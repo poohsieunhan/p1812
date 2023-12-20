@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const initRoutes = require("./src/routes");
+
 
 const app = express();
 app.use(cors({
@@ -11,9 +13,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-app.use("/",(req,res)=>{
-    return res.send("SERVER ONLINE!");
-});
+initRoutes(app);
 
 const PORT = process.env.PORT || 5000;
 
