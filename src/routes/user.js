@@ -1,7 +1,7 @@
-const router = require("express").Router();
+const user = require('../controllers/user');
+const router = require('express').Router();
 
-router.get("/",(req,res)=>{
-    return res.send("USER");
-})
+router.get("/",user.getUser)
+//router.get("/",user.addUser)
 
-module.exports = router;
+module.exports = router
