@@ -1,5 +1,7 @@
 const express = require('express');
-const cors = require('cors');
+//const cors = require('cors');
+import cors from 'cors';
+
 require('dotenv').config();
 const initRoutes = require("./src/routes");
 require('./connection_database');
