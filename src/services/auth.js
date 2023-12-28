@@ -1,6 +1,7 @@
+import { raw } from 'express'
 import db from '../models'
 import bcrypt from 'bcrypt'
-
+import jwt  from 'jsonwebtoken'
 
 
 //const hashPass = password => bcrypt.hashSync(password,bcrypt.genSaltSync(8))
@@ -17,13 +18,17 @@ export const register = ({email,password})=> new Promise( async (resolve,reject)
                 email,
                 password: hashPass
             }
+   
         })
 
-        console.log(response);
+        // console.log(response[1]);
+        // console.log(response[0].updatedAt);
+        const token = response[1] ? jwt.sign({id: response[0].id, email: response[0].email},'23H@uKhu)ng',{expiresIn:'2d'}): null
 
         resolve({
             err: response[1]?0:1,
-            mess: response[1]?'register success':'register fail'
+            mess: response[1]?'register success':'register fail',
+            token
         })
 
 
