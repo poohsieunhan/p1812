@@ -1,4 +1,5 @@
 import * as services from "../services";
+import { internalServerError } from "../middlewares/handle_error";
 
 export const regiter = async (req,res)=>{
     try {
@@ -16,10 +17,7 @@ export const regiter = async (req,res)=>{
         
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
-            "error" : -1,
-            "mess" :'Internal Server Error'
-        })
+        return internalServerError(res)
     }
 }
 
@@ -39,9 +37,6 @@ export const login = async (req,res)=>{
         
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
-            "error" : -1,
-            "mess" :'Internal Server Error'
-        })
+        return internalServerError(res)
     }
 }
