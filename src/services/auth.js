@@ -24,7 +24,7 @@ export const register = ({email,password})=> new Promise( async (resolve,reject)
         resolve({
             err: response[1]?0:1,
             mess: response[1]?'register success':'register fail',
-            token
+            'access_token': token?`Bearer ${token}`:null
         })
 
         resolve({
