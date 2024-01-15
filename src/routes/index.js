@@ -1,6 +1,7 @@
-const user = require("./user");
+
 import { internalServerError, notFound } from "../middlewares/handle_error";
 import auth from "./auth";
+import user from "./user";
 
 const initRoutes = (app)=>{
     

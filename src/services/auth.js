@@ -19,7 +19,7 @@ export const register = ({email,password})=> new Promise( async (resolve,reject)
    
         })
 
-        const token = response[1] ? jwt.sign({id: response[0].id, email: response[0].email},'23H@uKhu)ng',{expiresIn:'2d'}): null
+        const token = response[1] ? jwt.sign({id: response[0].id, email: response[0].email},process.env.JWT_SECRET,{expiresIn:'2d'}): null
 
         resolve({
             err: response[1]?0:1,
@@ -32,7 +32,7 @@ export const register = ({email,password})=> new Promise( async (resolve,reject)
             mes:'register service'
         })
 
-        console.log("after resolve");
+        //console.log("after resolve");
     } catch (error) {
         reject(error)
     }
@@ -48,7 +48,7 @@ export const login = ({email,password})=> new Promise( async (resolve,reject)=>{
 
         const isChecked = response && bcrypt.compareSync(password,response.password);
         //const token = response[1] ? jwt.sign({id: response[0].id, email: response[0].email},'23H@uKhu)ng',{expiresIn:'2d'}): null
-        const token = isChecked && jwt.sign({id: response.id, email: response.email},'23H@uKhu)ng',{expiresIn:'2d'})
+        const token = isChecked && jwt.sign({id: response.id, email: response.email},process.env.JWT_SECRET,{expiresIn:'2d'})
 
         resolve({
             err: token ? 0:1,
